@@ -1,14 +1,18 @@
 import * as React from 'react';
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import { Header } from '../components/header';
 import { Footer } from '../components/footer';
 import { CardGrid } from '../components/cardContainer';
-import { fetchData } from '../utils/fetchApi';
+import { GetServerSideProps, NextPage } from 'next';
+import { fetchData } from '../utils/fetchApi'
+import { Character } from '../../additional';
 
-const Home: NextPage = () => {
+type Props = {
+  data: Character[]
+}
 
-  const data = fetchData();
+const Home: NextPage<Props> = (props: Props) => {
+  const { data } = props;
 
   return (
     <div className='container'>
@@ -24,6 +28,13 @@ const Home: NextPage = () => {
       <Footer/>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const data = await fetchData();
+  return {
+    props: { data }
+  }
 }
 
 export default Home

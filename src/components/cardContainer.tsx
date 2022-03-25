@@ -1,35 +1,27 @@
 import * as React from 'react';
 import { Card } from './card';
-
-type Record = {
-  key: number;
-  imageUrl: string;
-  name: string;
-  species: string;
-  status: string;
-  lastKnownLocation: string;
-  firstSeenIn: string;
-}
+import { Character } from '../../additional';
 
 type Props = {
-  data: Array<Record>;
-};
+  data: Character[]
+}
 
 export const CardGrid = (props: Props): JSX.Element => {
 
-  const generateCards = (records: Props): JSX.Element[] => {
-    const { data } = records;
-    return data.map(item => {
-      const { key, imageUrl, name, species, status, lastKnownLocation, firstSeenIn } = item;
+  const data: Character[] = [...props.data]
+
+  const generateCards = (character: Character[]): JSX.Element[] => {
+    return character.map(item => {
+      const { id, image, name, species, status, location } = item;
       return (
         <Card
-          key={key}
-          imageUrl={imageUrl}
+          key={id}
+          imageUrl={image}
           name={name}
           species={species}
           status={status}
-          lastKnownLocation={lastKnownLocation}
-          firstSeenIn={firstSeenIn}
+          lastKnownLocation={location.name}
+          firstSeenIn={'Building'}
         />
       )
     })
@@ -37,7 +29,7 @@ export const CardGrid = (props: Props): JSX.Element => {
 
   return (
     <div className='cards-grid'>
-      {generateCards(props)}
+      {generateCards(data)}
     </div>
   )
 }
