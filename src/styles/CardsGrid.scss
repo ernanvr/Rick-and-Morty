@@ -1,0 +1,15 @@
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 5vh 10vh;
+
+  .image-container {
+    width: 100px;
+    height: 100px;
+
+    img {
+      object-fit: cover;
+    }
+    
+  }
+}

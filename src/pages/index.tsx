@@ -6,9 +6,10 @@ import { CardGrid } from '../components/cardContainer';
 import { GetServerSideProps, NextPage } from 'next';
 import { fetchData } from '../utils/fetchApi'
 import { Character } from '../../additional';
+import { GetAllCharacters } from '../../additional'
 
 type Props = {
-  data: Character[]
+  data: Character[];
 }
 
 const Home: NextPage<Props> = (props: Props) => {
@@ -23,7 +24,8 @@ const Home: NextPage<Props> = (props: Props) => {
 
       <Header/>
       <main className='main'>
-        <CardGrid data={data}/>
+        <h1>Rick and Morty Show</h1>
+        {!data ? 'No info' : <CardGrid data={data}/>}
       </main>
       <Footer/>
     </div>
@@ -31,10 +33,20 @@ const Home: NextPage<Props> = (props: Props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data = await fetchData();
-  return {
-    props: { data }
+  let data: GetAllCharacters;
+  try {
+    const url: string | undefined = process.env.CHARACTER_URL;
+    data = await fetchData(url);
+  } catch (error) {
+    return {
+      props: { data: undefined }
+    }
   }
+  const { results } = data;
+  return {
+    props: { data: results }
+  }
+
 }
 
 export default Home

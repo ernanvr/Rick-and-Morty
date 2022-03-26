@@ -1,5 +1,7 @@
 @use "./Home.scss";
 @use './Header.scss';
+@use './CardsGrid.scss';
+@use './Cards.scss';
 
 html,
 body {
@@ -24,4 +26,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }

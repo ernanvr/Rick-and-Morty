@@ -1,8 +1,10 @@
-const url: string | undefined = process.env.CHARACTER_URL;
-// const url: string = 'https://rickandmortyapi.com/api/character';
+import { GetAllCharacters } from '../../additional';
 
-export const fetchData = async () => {
+export const fetchData = async (url: string | undefined): Promise<GetAllCharacters> => {
+  if (!url) {
+    throw new Error('No url');
+  }
   const response = await fetch(<string>url);
   const data = await response.json();
-  return data.results;
+  return data;
 }
