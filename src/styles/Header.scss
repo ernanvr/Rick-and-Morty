@@ -21,17 +21,4 @@
     display: inline;
     padding: 0 8px;
   }
-
-  li:last-child {
-    border: 1px solid orange;
-    border-radius: 4px;
-
-    &:hover {
-      background-color: orange;
-
-      a {
-        color: white;
-      }
-    }
-  }
 }

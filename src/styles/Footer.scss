@@ -1,0 +1,21 @@
+@use './variables.scss' as var;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: var.$primary-dark;
+  color: var.$orange-light;
+
+  &__navbar {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+
+    li {
+      margin: 0 10px;
+    }
+  }
+}

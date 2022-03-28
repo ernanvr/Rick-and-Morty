@@ -21,7 +21,6 @@ export const CardGrid = (props: Props): JSX.Element => {
           species={species}
           status={status}
           lastKnownLocation={location.name}
-          firstSeenIn={'Building'}
         />
       )
     })

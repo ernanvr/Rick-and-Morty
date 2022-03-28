@@ -1,16 +1,26 @@
 import * as React from 'react';
-import Link from 'next/link'
+import { Info } from '../../additional'
+import Link from 'next/link';
 
-export const Footer = (): JSX.Element => {
+type Props= {
+  info: Info;
+}
+
+export const Footer = (props: Props): JSX.Element => {
+  const { info } = props;
   return (
-    <div>
-      <ul>
-        <li>Characters</li>
-        <li>Locations</li>
-        <li>Episodes</li>
+    <footer className='footer'>
+      <ul className='footer__navbar'>
+        <li>Characters: {info.characters}</li>
+        <li>Locations: {info.episodes}</li>
+        <li>Episodes: {info.locations}</li>
       </ul>
-      <Link href='/'><a>Server status</a></Link>
-      <div><span>By @ernanvr</span ></div>
-    </div>
+      <div>
+        <Link href='https://github.com/ernanvr/Rick-and-Morty'><a>Source Code</a></Link>
+      </div>
+      <div>
+        <span>By &#60;<span style={{ color: 'white', fontWeight: 'bold' }}>{'@ernanvr'}</span>&#62; powered by NextJs, React, Typescript and Sass</span >
+      </div>
+    </footer>
   )
 }

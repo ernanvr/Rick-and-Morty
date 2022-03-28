@@ -1,6 +1,4 @@
-import { GetAllCharacters } from '../../additional';
-
-export const fetchData = async (url: string | undefined): Promise<GetAllCharacters> => {
+export const fetchData = async (url: string | undefined) => {
   if (!url) {
     throw new Error('No url');
   }

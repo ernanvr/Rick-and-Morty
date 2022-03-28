@@ -1,4 +1,25 @@
+@use './variables.scss' as var;
+
 .card {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var.$primary-gray;
+  border-radius: 10px;
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+  }
+
+  &__title {
+    padding: 8px 0;
+  }
+
+  .image-container {
+    img {
+      object-fit: cover;
+      border-radius: 10px 0 0 10px;
+    }
+  }
 }

@@ -1,12 +1,13 @@
-@use "./Home.scss";
 @use './Header.scss';
 @use './CardsGrid.scss';
 @use './Cards.scss';
+@use './Footer.scss';
+@use './variables.scss' as var;
+@use './text.scss';
+
 
 html,
 body {
-  padding: 0;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -22,9 +23,16 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+
+  &:hover {
+    color: var.$primary-gray;
+    font-weight: bold;
+  }
 }
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -33,4 +41,29 @@ a {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: var.$primary-dark;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero-image svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  fill: rgb(240, 240, 240);
+  width: 150px;
+  height: 150px;
+  z-index: -1;
 }

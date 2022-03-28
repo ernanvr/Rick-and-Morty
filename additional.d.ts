@@ -28,3 +28,9 @@ export type GetAllCharacters = {
   },
   results: Array<Character>
 }
+
+export type Info = {
+  characters: number;
+  episodes: number;
+  locations: number;
+}
