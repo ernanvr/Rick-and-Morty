@@ -6,7 +6,8 @@
   flex-direction: column;
   align-items: center;
   background-color: var.$primary-dark;
-  color: var.$orange-light;
+  color: var.$primary-gray;
+  font-weight: bold;
 
   &__navbar {
     display: flex;

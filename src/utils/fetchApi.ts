@@ -5,4 +5,4 @@ export const fetchData = async (url: string | undefined) => {
   const response = await fetch(<string>url);
   const data = await response.json();
   return data;
-}
+};

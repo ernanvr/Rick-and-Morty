@@ -5,17 +5,18 @@ import { Header } from '../components/header';
 import { Footer } from '../components/footer';
 import { CardGrid } from '../components/cardContainer';
 import { GetServerSideProps, NextPage } from 'next';
-import { fetchData } from '../utils/fetchApi'
-import { Character, Info } from '../../additional';
-import { GetAllCharacters } from '../../additional'
+import { Data } from '../types/dataApi';
+import { callApiRickAndMorty } from '../utils/callApi';
+import { CHARACTER_URL, EPISODE_URL, LOCATION_URL } from '../context/AppContext';
 
 type Props = {
-  data: Character[];
-  info: Info;
+    data: Data;
 }
 
 const Home: NextPage<Props> = (props: Props) => {
-  const { data, info } = props;
+  const data: Data = props.data;
+  const { characters } = data;
+  const { genInfo } = data;
 
   return (
     <div className='container'>
@@ -31,64 +32,25 @@ const Home: NextPage<Props> = (props: Props) => {
           <h1 className='title__hero'>Rick and Morty Characters</h1>
         </section>
         <section className='grid-container'>
-          {!data ? 'No info' : <CardGrid data={data}/>}
+          {!data ? 'no info' : <CardGrid data={characters}/> }
         </section>
       </main>
-      <Footer info={info} />
+      <Footer info={genInfo} />
     </div>
-  )
-}
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
-  let characters: GetAllCharacters;
-  try {
-    const url: string | undefined = process.env.CHARACTER_URL;
-    characters = await fetchData(url);
-  } catch (error) {
-    return {
-      props: { data: undefined, info: undefined }
-    }
-  }
-  const infoCharacters: number = characters.info.count;
-  const resultsCharacters: Character[] = characters.results;
-
-  let episodes;
-  try {
-    const url: string | undefined = process.env.EPISODE_URL;
-    episodes = await fetchData(url);
-  } catch (error) {
-    return {
-      props: { data: resultsCharacters, info: {
-        characters: infoCharacters
-      } }
-    }
-  }
-
-  const infoEpisodes: number = episodes.info.count;
-
-  let locations;
-  try {
-    const url: string | undefined = process.env.LOCATION_URL;
-    locations = await fetchData(url);
-  } catch (error) {
-    return {
-      props: { data: resultsCharacters, info: {
-        characters: infoCharacters,
-        episodes: infoEpisodes
-      } }
-    }
-  }
-
-  const infoLocations: number = locations.info.count;
+  const data: Data = await callApiRickAndMorty({
+    charactersUrl: CHARACTER_URL,
+    episodesUrl: EPISODE_URL,
+    locationsUrl: LOCATION_URL
+  });
 
   return {
-    props: { data: resultsCharacters, info: {
-      characters: infoCharacters,
-      episodes: infoEpisodes,
-      locations: infoLocations
-    } }
-  }
-}
+    props: { data }
+  };
+};
 
-export default Home
+export default Home;

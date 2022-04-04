@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card } from './card';
-import { Character } from '../../additional';
+import { Character } from '../types/dataApi';
 
 type Props = {
   data: Character[]
@@ -8,7 +8,7 @@ type Props = {
 
 export const CardGrid = (props: Props): JSX.Element => {
 
-  const data: Character[] = [...props.data]
+  const data: Character[] = props.data;
 
   const generateCards = (character: Character[]): JSX.Element[] => {
     return character.map(item => {
@@ -22,13 +22,13 @@ export const CardGrid = (props: Props): JSX.Element => {
           status={status}
           lastKnownLocation={location.name}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <div className='cards-grid'>
       {generateCards(data)}
     </div>
-  )
-}
+  );
+};
