@@ -39,7 +39,7 @@ export type Location = {
   created: string
 }
 
-export type RickandmortyApiCharRespond = {
+export type Characters = {
   info: {
     count: number,
     pages: number,
@@ -49,7 +49,7 @@ export type RickandmortyApiCharRespond = {
   results: Array<Character>
 }
 
-export type RickandmortyApiEpisRespond = {
+export type Episodes = {
   info: {
     count: number,
     pages: number,
@@ -59,7 +59,7 @@ export type RickandmortyApiEpisRespond = {
   results: Array<Episode>
 }
 
-export type RickandmortyApiLocaRespond = {
+export type Locations = {
   info: {
     count: number;
     pages: number;
@@ -69,15 +69,15 @@ export type RickandmortyApiLocaRespond = {
   results: Array<Location>;
 }
 
-export type GeneralInfo = {
+export type Summary = {
   characters: number;
   episodes: number;
   locations: number;
 }
 
 export type Data = {
-  characters: Character[];
-  episodes: Episode[];
-  locations: Location[];
-  genInfo: GeneralInfo;
+  characters: Characters;
+  episodes: Episodes;
+  locations: Locations;
+  summary: Summary;
 }

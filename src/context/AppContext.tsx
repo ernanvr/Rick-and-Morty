@@ -1,5 +1,5 @@
 import { Data } from '../types/dataApi';
-import { callApiRickAndMorty } from '../utils/callApi';
+import { callApiRickAndMorty } from '../utils/callApiRickAndMorty';
 import * as React from 'react';
 
 export const CHARACTER_URL = 'https://rickandmortyapi.com/api/character';
@@ -13,10 +13,34 @@ type authContextTypes = {
 
 const authContextDefaultValues: authContextTypes = {
   dataResult: {
-    characters: [],
-    episodes: [],
-    locations: [],
-    genInfo: {
+    characters: {
+      info: {
+        count: 0,
+        pages: 0,
+        next: '',
+        prev: ''
+      },
+      results: []
+    },
+    episodes: {
+      info: {
+        count: 0,
+        pages: 0,
+        next: '',
+        prev: ''
+      },
+      results: []
+    },
+    locations: {
+      info: {
+        count: 0,
+        pages: 0,
+        next: '',
+        prev: ''
+      },
+      results: []
+    },
+    summary: {
       characters: 0,
       episodes: 0,
       locations: 0

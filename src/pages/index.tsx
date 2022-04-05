@@ -4,19 +4,23 @@ import Head from 'next/head';
 import { Header } from '../components/header';
 import { Footer } from '../components/footer';
 import { CardGrid } from '../components/cardContainer';
-import { GetServerSideProps, NextPage } from 'next';
-import { Data } from '../types/dataApi';
-import { callApiRickAndMorty } from '../utils/callApi';
-import { CHARACTER_URL, EPISODE_URL, LOCATION_URL } from '../context/AppContext';
+import { NextPage } from 'next';
+import { useContext } from '../context/AppContext';
+// import { GetServerSideProps, NextPage } from 'next';
+// import { Data } from '../types/dataApi';
+// import { callApiRickAndMorty } from '../utils/callApiRickAndMorty';
+// import { CHARACTER_URL, EPISODE_URL, LOCATION_URL } from '../context/AppContext';
 
-type Props = {
-    data: Data;
-}
+// type Props = {
+//     data: Data;
+// }
 
-const Home: NextPage<Props> = (props: Props) => {
-  const data: Data = props.data;
-  const { characters } = data;
-  const { genInfo } = data;
+// const Home: NextPage<Props> = (props: Props) => {
+const Home: NextPage = () => {
+  // const data: Data = props.data;
+  const { dataResult } = useContext();
+  const { characters } = dataResult;
+  const { summary } = dataResult;
 
   return (
     <div className='container'>
@@ -32,25 +36,24 @@ const Home: NextPage<Props> = (props: Props) => {
           <h1 className='title__hero'>Rick and Morty Characters</h1>
         </section>
         <section className='grid-container'>
-          {!data ? 'no info' : <CardGrid data={characters}/> }
+          {!dataResult ? 'no info' : <CardGrid data={characters.results}/> }
         </section>
       </main>
-      <Footer info={genInfo} />
+      <Footer info={summary} />
     </div>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const data: Data = await callApiRickAndMorty({
+//     charactersUrl: CHARACTER_URL,
+//     episodesUrl: EPISODE_URL,
+//     locationsUrl: LOCATION_URL
+//   });
 
-  const data: Data = await callApiRickAndMorty({
-    charactersUrl: CHARACTER_URL,
-    episodesUrl: EPISODE_URL,
-    locationsUrl: LOCATION_URL
-  });
-
-  return {
-    props: { data }
-  };
-};
+//   return {
+//     props: { data }
+//   };
+// };
 
 export default Home;
