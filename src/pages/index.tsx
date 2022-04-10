@@ -18,9 +18,8 @@ import { useContext } from '../context/AppContext';
 // const Home: NextPage<Props> = (props: Props) => {
 const Home: NextPage = () => {
   // const data: Data = props.data;
-  const { dataResult } = useContext();
-  const { characters } = dataResult;
-  const { summary } = dataResult;
+  const { state } = useContext();
+  const { characters } = state;
 
   return (
     <div className='container'>
@@ -36,10 +35,10 @@ const Home: NextPage = () => {
           <h1 className='title__hero'>Rick and Morty Characters</h1>
         </section>
         <section className='grid-container'>
-          {!dataResult ? 'no info' : <CardGrid data={characters.results}/> }
+          {!state ? 'no info' : <CardGrid data={characters.results}/> }
         </section>
       </main>
-      <Footer info={summary} />
+      <Footer />
     </div>
   );
 };

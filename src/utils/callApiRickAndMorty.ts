@@ -1,5 +1,5 @@
 import { fetchData } from './fetchApi';
-import { Data } from '../types/dataApi';
+import { Data, Episodes, Locations, Characters } from '../types/dataApi';
 
 type Props = {
   charactersUrl: string;
@@ -7,7 +7,7 @@ type Props = {
   locationsUrl: string;
 }
 
-export async function callApiRickAndMorty(props: Props): Promise<Data> {
+export async function getAllApiRickAndMorty(props: Props): Promise<Data> {
   const { charactersUrl, episodesUrl, locationsUrl } = props;
 
   const data: Data = {
@@ -43,6 +43,11 @@ export async function callApiRickAndMorty(props: Props): Promise<Data> {
       episodes: 0,
       locations: 0
     },
+    navigationState: {
+      characters: 1,
+      episodes: 1,
+      locations: 1
+    }
   };
 
   if (charactersUrl) {
@@ -61,6 +66,25 @@ export async function callApiRickAndMorty(props: Props): Promise<Data> {
     const locations = await fetchData(locationsUrl);
     data.locations = locations;
     data.summary.locations = locations.info.count;
+  }
+
+  return data;
+}
+
+export async function fetchApiRickAndMorty(url: string): Promise<Characters | Locations | Episodes> {
+  let data: Characters | Locations | Episodes = {
+    info: {
+      count: 0,
+      pages: 0,
+      next: '',
+      prev: ''
+    },
+    results: []
+  };
+
+  if (url) {
+    const response = await fetchData(url);
+    data = response;
   }
 
   return data;

@@ -1,49 +1,63 @@
 import * as React from 'react';
-import { Info } from '../../additional';
 import Link from 'next/link';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { useContext } from '../context/AppContext';
+import { Data } from '../types/dataApi';
 
-type Props= {
-  info: Info;
-}
+export const Footer = (): JSX.Element => {
+  const { state, goCharactersPage } = useContext();
+  const { characters } = state;
+  const { summary } = state;
 
-export const Footer = (props: Props): JSX.Element => {
-  const { info } = props;
+  function handleNextClick(url: string, state: Data) {
+    console.log(state.navigationState.characters > 1);
+    state.navigationState.characters++;
+    goCharactersPage(url, state);
+    document.body.scrollTo(0, 0);
+    document.documentElement.scrollTo(0, 0);
+  }
+
+  function handlePreviousClick(url: string, state: Data) {
+    console.log(state.navigationState.characters > 1);
+    state.navigationState.characters--;
+    goCharactersPage(url, state);
+    document.body.scrollTo(0, 0);
+    document.documentElement.scrollTo(0, 0);
+  }
+
   return (
     <footer className='footer'>
       <div className='footer__pages-navigator'>
-        <h3> <FaArrowLeft/> Pages <span id='current-page'>1</span> de <span id='total-pages'>20</span> <FaArrowRight/></h3>
+        <button
+          onClick={() => handlePreviousClick(characters.info.prev, state)}
+          disabled={!(state.navigationState.characters > 1)}
+        >
+          <FaArrowLeft/>
+        </button>
+        <p className='paragraph__small footer__pages-navigator'>  Pages <span id='current-page'>{state.navigationState.characters}</span> of <span id='total-pages'>{state.characters.info.pages}</span> </p>
+        <button
+          onClick={() => handleNextClick(characters.info.next, state)}
+          disabled={!(state.navigationState.characters < state.characters.info.pages)}
+        >
+          <FaArrowRight/>
+        </button>
       </div>
-      <ul className='footer__navbar'>
-        <Link href='/' >
-          <a>
-            Characters: {info.characters}
-          </a>
-        </Link>
-        <Link href='/'>
-          <a>
-            Locations: {info.episodes}
-          </a>
-        </Link>
-        <Link href='/'>
-          <a>
-            Episodes: {info.locations}
-          </a>
-        </Link>
-      </ul>
-      <div>
-        <Link href='https://github.com/ernanvr/Rick-and-Morty' ><a target={'_blank'}>Source Code</a></Link>
-      </div>
-      <div>
-        <span>
+      <div className='footer__main-section'>
+        <p>
+          Characters: {summary.characters}
+        </p>
+        <div>
+          <Link href='https://github.com/ernanvr/Rick-and-Morty' ><a target={'_blank'}>Source Code</a></Link>
+        </div>
+        <p>
           By &#60;
           <Link href='https://github.com/ernanvr/'>
-            <a target={'_blank'}>
-              <span className='hero-span'> {'@ernanvr'} </span>
+            <a className='hero-link' target={'_blank'}>
+              <span > {'@ernanvr'} </span>
             </a>
           </Link>
             &#62; powered by NextJs, React, Typescript and Sass
-        </span >
+        </p >
       </div>
     </footer>
   );

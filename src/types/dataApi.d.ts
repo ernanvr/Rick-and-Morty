@@ -75,9 +75,16 @@ export type Summary = {
   locations: number;
 }
 
+export type NavigationState = {
+  characters: number;
+  episodes: number;
+  locations: number;
+}
+
 export type Data = {
   characters: Characters;
   episodes: Episodes;
   locations: Locations;
   summary: Summary;
+  navigationState: NavigationState;
 }
