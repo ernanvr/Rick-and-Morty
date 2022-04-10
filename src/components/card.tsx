@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 
 type Props = {
   key: number;
@@ -55,5 +55,5 @@ export const Card = (props: Props): JSX.Element => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
