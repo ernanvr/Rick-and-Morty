@@ -17,14 +17,16 @@ const CharacterDetails = () => {
     <>
       <Header/>
       <div className='card-details'>
-        <Image
-          className='card-image'
-          src={image}
-          width={300}
-          height={300}
-          layout='fixed'
-          alt={`${name}-image`}
-        />
+        <div className='image-container'>
+          <Image
+            className='card-image'
+            src={image}
+            width={300}
+            height={300}
+            layout='fixed'
+            alt={`${name}-image`}
+          />
+        </div>
         <h2>{name}</h2>
         <p className='paragraph__normal'>
           <span>

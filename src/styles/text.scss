@@ -1,26 +1,75 @@
 @use './variables.scss' as var;
+@use './include-media' as im;
 
 .title__hero {
   font-size: 8rem;
   z-index: -100;
+
+  @include im.media('<=galaxyFold'){
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  @include im.media('>galaxyFold', '<=tablet'){
+    font-size: 5rem;
+    text-align: center;
+  }
+
+  @include im.media('>tablet', '<desktop'){
+    font-size: 5rem;
+    text-align: center;
+  }
 }
 
 .title__h2 {
   font-size: 2.4rem;
   color: var.$white;
+
+  @include im.media('<=galaxyFold'){
+    font-size: 1.7rem;
+  }
+
+  @include im.media('>galaxyFold', '<=tablet'){
+    font-size: 2.2rem;
+  }
+
 }
 
 .title__h4 {
   font-size: 1.8rem;
   color: var.$white;
+
+  @include im.media('<=galaxyFold'){
+    font-size: 1.4rem;
+  }
+
+  @include im.media('>galaxyFold', '<=tablet'){
+    font-size: 1.6rem;
+  }
 }
 
 .paragraph__normal {
   font-size: 1.6rem;
   color: var.$white;
+
+  @include im.media('<=galaxyFold'){
+    font-size: 1.1rem;
+  }
+
+  @include im.media('>galaxyFold', '<=tablet'){
+    font-size: 1.3rem;
+  }
 }
 
 .paragraph__small {
   font-size: 1.3rem;
   color: var.$white;
+
+  @include im.media('<=galaxyFold'){
+    font-size: 1.1rem;
+  }
+
+  @include im.media('>galaxyFold', '<=tablet'){
+    font-size: 1.3rem;
+  }
 }

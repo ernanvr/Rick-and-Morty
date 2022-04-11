@@ -1,10 +1,23 @@
 @use './variables.scss' as var;
+@use './include-media' as im;
 
 .card {
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-color: var.$primary-gray;
   border-radius: 10px;
+
+  & .image-container{
+    position: relative;
+    width: 150px;
+    height: 150px;
+
+    @include im.media('<=galaxyFold'){
+      width: 125px;
+      height: 125px;
+    }
+
+  }
 
   &-info {
     display: flex;

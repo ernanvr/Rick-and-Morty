@@ -21,9 +21,8 @@ export const Card = (props: Props): JSX.Element => {
         <Image
           className='card-image'
           src={imageUrl}
-          width={150}
-          height={150}
-          layout='fixed'
+          layout='fill'
+          objectFit='cover'
           alt={`${name}-image`}
         />
       </div>
