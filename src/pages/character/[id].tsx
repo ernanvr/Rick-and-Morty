@@ -11,6 +11,10 @@ const CharacterDetails = () => {
 
   const character = characters.results.filter(response => response.id === Number(router.query.id));
 
+  if (!character[0]) {
+    return <p>No data</p>;
+  }
+
   const { name, image, status, species, origin, gender, location, episode } = character[0];
 
   return (

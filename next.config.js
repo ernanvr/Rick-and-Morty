@@ -7,8 +7,8 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
-    domains: ['rickandmortyapi.com', 'img.icons8.com'],
+    domains: ['rickandmortyapi.com', 'img.icons8.com', 'https://about.me'],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

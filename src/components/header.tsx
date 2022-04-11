@@ -17,7 +17,7 @@ export const Header = (): JSX.Element => {
             </Link>
           </div>
           <div className='header-navbar__links'>
-            <li><Link href='/'>About</Link></li>
+            <li><Link href='https://about.me/ernanvr'>About</Link></li>
           </div>
         </nav>
       </header>
