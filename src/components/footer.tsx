@@ -34,7 +34,7 @@ export const Footer = (): JSX.Element => {
         >
           <FaArrowLeft/>
         </button>
-        <p className='paragraph__small footer__pages-navigator'>  Pages <span id='current-page'>{state.navigationState.characters}</span> of <span id='total-pages'>{state.characters.info.pages}</span> </p>
+        <p className='paragraph__small footer__pages-navigator'>  Page <span id='current-page'>{state.navigationState.characters}</span> of <span id='total-pages'>{state.characters.info.pages}</span> </p>
         <button
           onClick={() => handleNextClick(characters.info.next, state)}
           disabled={!(state.navigationState.characters < state.characters.info.pages)}

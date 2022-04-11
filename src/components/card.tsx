@@ -1,8 +1,10 @@
 import * as React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   key: number;
+  id: number;
   imageUrl: string;
   name: string;
   species: string;
@@ -11,7 +13,8 @@ type Props = {
 }
 
 export const Card = (props: Props): JSX.Element => {
-  const { imageUrl, name, species, status, lastKnownLocation } = props;
+  const { imageUrl, name, species, status, lastKnownLocation, id } = props;
+
   return (
     <div className='card'>
       <div className='image-container'>
@@ -26,7 +29,11 @@ export const Card = (props: Props): JSX.Element => {
       </div>
       <div className='card-info'>
         <div className='card__title'>
-          <h2 className='title__h2'>{name}</h2>
+          <Link href={`/character/${id}`} passHref>
+            <a>
+              <h2 className='title__h2'>{name}</h2>
+            </a>
+          </Link>
           <p className='paragraph__normal'>
             <span>
               {status === 'Alive' ?

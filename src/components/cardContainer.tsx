@@ -13,9 +13,11 @@ export const CardGrid = (props: Props): JSX.Element => {
   const generateCards = (character: Character[]): JSX.Element[] => {
     return character.map(item => {
       const { id, image, name, species, status, location } = item;
+
       return (
         <Card
           key={id}
+          id={id}
           imageUrl={image}
           name={name}
           species={species}

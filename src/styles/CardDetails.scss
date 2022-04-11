@@ -1,0 +1,28 @@
+@use '../styles/variables.scss' as vars;
+.card-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+
+  & .card-image {
+    border-radius: 8px;
+  }
+  
+  & * {
+    color: vars.$primary-dark;
+  }
+
+  & .subtitle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+
+    h5 {
+      margin-right: 8px;
+      font-size: 1em;
+    }
+  }
+}
